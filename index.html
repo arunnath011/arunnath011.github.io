@@ -1,0 +1,114 @@
+<section id="all-repos">
+  <h2>All public repositories</h2>
+  <p class="small">
+    Auto-generated from <a href="https://github.com/arunnath011?tab=repositories" target="_blank" rel="noreferrer">github.com/arunnath011</a>.
+  </p>
+
+  <div id="repo-controls" class="card" style="margin-bottom: 14px;">
+    <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center; justify-content:space-between;">
+      <div class="small">
+        <strong>Filters:</strong>
+        <label style="margin-left:10px;">
+          <input id="hide-forks" type="checkbox" checked />
+          Hide forks
+        </label>
+      </div>
+
+      <div class="small">
+        <label>
+          Sort:
+          <select id="sort" style="margin-left:8px;">
+            <option value="updated">Recently updated</option>
+            <option value="stars">Stars</option>
+          </select>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div id="repos" class="grid"></div>
+
+  <p id="repo-status" class="small" style="margin-top: 10px; color: var(--muted);"></p>
+</section>
+
+<script>
+(async function () {
+  const username = "arunnath011";
+  const reposEl = document.getElementById("repos");
+  const statusEl = document.getElementById("repo-status");
+  const hideForksEl = document.getElementById("hide-forks");
+  const sortEl = document.getElementById("sort");
+
+  // GitHub API is paginated. We'll fetch up to 200 repos (2 pages of 100).
+  async function fetchAllRepos() {
+    const perPage = 100;
+    const pages = [1, 2];
+
+    const results = [];
+    for (const page of pages) {
+      const url = `https://api.github.com/users/${username}/repos?per_page=${perPage}&page=${page}&sort=updated`;
+      const res = await fetch(url, { headers: { "Accept": "application/vnd.github+json" } });
+      if (!res.ok) throw new Error(`GitHub API error: ${res.status}`);
+      const data = await res.json();
+      results.push(...data);
+      if (data.length < perPage) break; // no more pages
+    }
+    return results;
+  }
+
+  function normalizeLanguage(lang) {
+    return lang || "—";
+  }
+
+  function render(repos) {
+    const hideForks = hideForksEl.checked;
+    const sortMode = sortEl.value;
+
+    let list = repos.slice();
+
+    if (hideForks) list = list.filter(r => !r.fork);
+
+    if (sortMode === "stars") {
+      list.sort((a, b) => (b.stargazers_count || 0) - (a.stargazers_count || 0));
+    } else {
+      list.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+    }
+
+    reposEl.innerHTML = "";
+
+    for (const r of list) {
+      const desc = (r.description || "").trim();
+      const updated = new Date(r.updated_at).toISOString().slice(0, 10);
+
+      const card = document.createElement("div");
+      card.className = "card col6";
+      card.innerHTML = `
+        <h3 style="margin:0 0 6px; font-size:16px;">
+          <a href="${r.html_url}" target="_blank" rel="noreferrer">${r.name}</a>
+        </h3>
+        <p style="margin:0 0 10px; color: var(--muted);">${desc ? desc : "No description provided."}</p>
+        <div class="small" style="display:flex; gap:12px; flex-wrap:wrap;">
+          <span><strong>Lang:</strong> ${normalizeLanguage(r.language)}</span>
+          <span><strong>Stars:</strong> ${r.stargazers_count || 0}</span>
+          <span><strong>Updated:</strong> ${updated}</span>
+        </div>
+      `;
+      reposEl.appendChild(card);
+    }
+
+    statusEl.textContent = `Showing ${list.length} repositories.`;
+  }
+
+  try {
+    statusEl.textContent = "Loading repositories from GitHub…";
+    const repos = await fetchAllRepos();
+    render(repos);
+
+    hideForksEl.addEventListener("change", () => render(repos));
+    sortEl.addEventListener("change", () => render(repos));
+  } catch (e) {
+    statusEl.textContent = "Could not load repositories automatically. Please use the GitHub link above.";
+    console.error(e);
+  }
+})();
+</script>

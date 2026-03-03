@@ -1,114 +1,254 @@
-<section id="all-repos">
-  <h2>All public repositories</h2>
-  <p class="small">
-    Auto-generated from <a href="https://github.com/arunnath011?tab=repositories" target="_blank" rel="noreferrer">github.com/arunnath011</a>.
+<style>
+  :root {
+    color-scheme: light dark;
+  }
+
+  body {
+    margin: 0;
+    padding: 32px 20px 48px;
+    font-family: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.7;
+  }
+
+  #projects {
+    max-width: 78ch;
+    margin: 0 auto;
+  }
+
+  h1, h2, h3 {
+    line-height: 1.25;
+    margin: 0;
+  }
+
+  h1 {
+    font-size: clamp(1.8rem, 3.2vw, 2.4rem);
+    margin-bottom: 12px;
+  }
+
+  h2 {
+    font-size: clamp(1.3rem, 2.2vw, 1.65rem);
+    margin: 32px 0 16px;
+  }
+
+  h3 {
+    font-size: 1.03rem;
+    margin-bottom: 10px;
+  }
+
+  p {
+    margin: 0;
+    color: var(--muted, #4b5563);
+  }
+
+  .intro {
+    margin-bottom: 24px;
+  }
+
+  .repo-entry {
+    padding: 16px 0;
+    border-top: 1px solid var(--line, rgba(127, 127, 127, 0.24));
+  }
+
+  .repo-entry:first-of-type {
+    border-top: 0;
+    padding-top: 0;
+  }
+
+  .cards-list p {
+    margin-top: 4px;
+  }
+
+  .footer-link {
+    margin-top: 28px;
+    font-size: 0.96rem;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  @media (max-width: 640px) {
+    body {
+      padding: 24px 16px 36px;
+    }
+  }
+</style>
+
+<main id="projects">
+  <h1>Projects</h1>
+  <p class="intro">
+    Engineering manager focused on applied ML and AI for manufacturing intelligence, data systems, and materials-science-informed modeling.
+    This project set highlights practical build work, production-minded experimentation, and end-to-end analytics delivery.
   </p>
 
-  <div id="repo-controls" class="card" style="margin-bottom: 14px;">
-    <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center; justify-content:space-between;">
-      <div class="small">
-        <strong>Filters:</strong>
-        <label style="margin-left:10px;">
-          <input id="hide-forks" type="checkbox" checked />
-          Hide forks
-        </label>
-      </div>
+  <h2>Added expanded summaries (new repos)</h2>
 
-      <div class="small">
-        <label>
-          Sort:
-          <select id="sort" style="margin-left:8px;">
-            <option value="updated">Recently updated</option>
-            <option value="stars">Stars</option>
-          </select>
-        </label>
-      </div>
-    </div>
-  </div>
+  <article class="repo-entry">
+    <h3>arunnath011/arunnath011.github.io</h3>
+    <p>
+      This repository powers my public technical homepage and acts as a living summary of my work across applied ML and data systems.
+      I treat it as a communication layer between experiments and outcomes, translating project complexity into clear, decision-friendly narratives.
+      The site design emphasizes readability over visual noise so visitors can quickly understand impact, scope, and technical depth.
+      It also provides a stable place to curate and update project framing as priorities evolve.
+      In practice, this repo is where portfolio storytelling, engineering rigor, and professional brand alignment meet.
+    </p>
+  </article>
 
-  <div id="repos" class="grid"></div>
+  <article class="repo-entry">
+    <h3>arunnath011/SimulationPuck</h3>
+    <p>
+      SimulationPuck explores synthetic simulation workflows where controlled environments can generate realistic trajectories for downstream analysis.
+      The project is designed to accelerate early-stage model development when direct real-world data is sparse, expensive, or hard to instrument.
+      It focuses on creating reproducible conditions, interpretable outputs, and tunable simulation parameters that map to practical manufacturing scenarios.
+      By reducing dependency on immediate field collection, it shortens iteration loops for experimentation.
+      The result is a stronger bridge between conceptual system behavior and production-grade modeling pipelines.
+    </p>
+  </article>
 
-  <p id="repo-status" class="small" style="margin-top: 10px; color: var(--muted);"></p>
-</section>
+  <article class="repo-entry">
+    <h3>arunnath011/BatterySimulator</h3>
+    <p>
+      BatterySimulator is a synthetic data generator for lithium-ion cycling behavior, aimed at building robust model foundations for battery analytics.
+      It captures charge-discharge dynamics under varied operating assumptions to support diagnostics, forecasting, and scenario testing.
+      A key focus is balancing physical plausibility with flexible simulation controls so teams can test hypotheses before full-scale experiments.
+      The repository supports experimentation across operating regimes relevant to industrial energy systems.
+      It enables faster learning cycles for predictive maintenance and performance optimization initiatives.
+    </p>
+  </article>
 
-<script>
-(async function () {
-  const username = "arunnath011";
-  const reposEl = document.getElementById("repos");
-  const statusEl = document.getElementById("repo-status");
-  const hideForksEl = document.getElementById("hide-forks");
-  const sortEl = document.getElementById("sort");
+  <article class="repo-entry">
+    <h3>arunnath011/amperedata-streamlit</h3>
+    <p>
+      amperedata-streamlit packages analytics workflows into an interactive app experience for faster exploration and stakeholder communication.
+      The goal is to turn raw operational data into understandable dashboards and analytical narratives without heavy deployment overhead.
+      It combines model outputs, diagnostics, and filtering interactions in a format accessible to both technical and business audiences.
+      This repository emphasizes pragmatic delivery: useful interfaces, clear insights, and quick iteration.
+      It serves as a lightweight path from notebook experimentation to decision-support tooling.
+    </p>
+  </article>
 
-  // GitHub API is paginated. We'll fetch up to 200 repos (2 pages of 100).
-  async function fetchAllRepos() {
-    const perPage = 100;
-    const pages = [1, 2];
+  <article class="repo-entry">
+    <h3>arunnath011/kaggle_enefit</h3>
+    <p>
+      kaggle_enefit is an energy forecasting project centered on building competitive and reliable prediction pipelines under real-world constraints.
+      It covers feature engineering, temporal validation strategy, and model comparison for demand and production signals.
+      The repository reflects disciplined experimentation in a benchmark setting while maintaining production-relevant thinking.
+      Special attention is paid to leakage control, time-aware splits, and robust evaluation.
+      The work sharpens approaches that transfer directly to grid and industrial forecasting systems.
+    </p>
+  </article>
 
-    const results = [];
-    for (const page of pages) {
-      const url = `https://api.github.com/users/${username}/repos?per_page=${perPage}&page=${page}&sort=updated`;
-      const res = await fetch(url, { headers: { "Accept": "application/vnd.github+json" } });
-      if (!res.ok) throw new Error(`GitHub API error: ${res.status}`);
-      const data = await res.json();
-      results.push(...data);
-      if (data.length < perPage) break; // no more pages
-    }
-    return results;
-  }
+  <article class="repo-entry">
+    <h3>arunnath011/NLP_Anomaly-Detection</h3>
+    <p>
+      NLP_Anomaly-Detection is an applied NLP project focused on detecting anomalous patterns in text streams and document corpora.
+      It investigates representations and scoring strategies that can separate expected language behavior from rare, high-signal events.
+      The project is relevant to quality monitoring, incident triage, and process intelligence where textual artifacts carry operational clues.
+      Its workflow emphasizes transparent preprocessing and interpretable anomaly outputs.
+      The repository demonstrates how language modeling can be shaped into practical monitoring capability.
+    </p>
+  </article>
 
-  function normalizeLanguage(lang) {
-    return lang || "—";
-  }
+  <article class="repo-entry">
+    <h3>arunnath011/isolated-sign-language-recognition</h3>
+    <p>
+      isolated-sign-language-recognition is a computer vision and sequence modeling project for classifying isolated sign gestures.
+      It combines representation learning with temporal understanding to improve recognition quality on short sign sequences.
+      The repository addresses a meaningful accessibility domain where robust modeling can support inclusive interaction.
+      It also highlights the engineering trade-offs between model complexity, training data constraints, and inference efficiency.
+      The project illustrates a thoughtful path from research-style modeling to practical assistive AI applications.
+    </p>
+  </article>
 
-  function render(repos) {
-    const hideForks = hideForksEl.checked;
-    const sortMode = sortEl.value;
+  <article class="repo-entry">
+    <h3>arunnath011/ml_systems</h3>
+    <p>
+      ml_systems captures architecture and implementation patterns for building dependable machine learning systems beyond isolated notebooks.
+      The focus is on reproducibility, modular design, and deployment-aware development practices.
+      It explores how data preparation, training, evaluation, and serving concerns should fit together in maintainable pipelines.
+      The repository reflects a systems mindset that prioritizes reliability and operational clarity.
+      It acts as a foundation for scaling applied ML work across teams and products.
+    </p>
+  </article>
 
-    let list = repos.slice();
+  <article class="repo-entry">
+    <h3>arunnath011/Boston_crime-analytics</h3>
+    <p>
+      Boston_crime-analytics analyzes incident patterns through spatial and temporal lenses to surface actionable public-safety insights.
+      The project blends data cleaning, exploratory analysis, and statistical summarization to identify trends and anomaly windows.
+      It is built to make complex civic datasets easier to interpret for planning and prioritization.
+      Clear visual storytelling and evidence-backed interpretation are central to the workflow.
+      The repository demonstrates end-to-end analytics craftsmanship from raw records to useful conclusions.
+    </p>
+  </article>
 
-    if (hideForks) list = list.filter(r => !r.fork);
+  <article class="repo-entry">
+    <h3>arunnath011/Wine_quality_analytics</h3>
+    <p>
+      Wine_quality_analytics is a predictive modeling project that studies how chemical and process variables relate to quality outcomes.
+      It uses structured feature analysis and supervised learning to build interpretable quality estimators.
+      The repository is intentionally practical: establish baseline performance, improve signal extraction, and communicate model behavior clearly.
+      It provides a compact example of translating tabular ML into domain-relevant decision support.
+      The work emphasizes clarity, reproducibility, and measurable improvement across model iterations.
+    </p>
+  </article>
 
-    if (sortMode === "stars") {
-      list.sort((a, b) => (b.stargazers_count || 0) - (a.stargazers_count || 0));
-    } else {
-      list.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
-    }
+  <h2>Updated “project cards” (homepage-ready text)</h2>
 
-    reposEl.innerHTML = "";
+  <section class="cards-list">
+    <article class="repo-entry">
+      <h3>arunnath011.github.io — Portfolio Narrative Hub</h3>
+      <p>A typography-first technical homepage that curates ML and data-system projects into clear, professional storytelling for collaborators and hiring teams.</p>
+    </article>
 
-    for (const r of list) {
-      const desc = (r.description || "").trim();
-      const updated = new Date(r.updated_at).toISOString().slice(0, 10);
+    <article class="repo-entry">
+      <h3>SimulationPuck — Controlled Simulation Sandbox</h3>
+      <p>A simulation-first environment for generating reproducible synthetic scenarios, accelerating experimentation when real-world data is limited.</p>
+    </article>
 
-      const card = document.createElement("div");
-      card.className = "card col6";
-      card.innerHTML = `
-        <h3 style="margin:0 0 6px; font-size:16px;">
-          <a href="${r.html_url}" target="_blank" rel="noreferrer">${r.name}</a>
-        </h3>
-        <p style="margin:0 0 10px; color: var(--muted);">${desc ? desc : "No description provided."}</p>
-        <div class="small" style="display:flex; gap:12px; flex-wrap:wrap;">
-          <span><strong>Lang:</strong> ${normalizeLanguage(r.language)}</span>
-          <span><strong>Stars:</strong> ${r.stargazers_count || 0}</span>
-          <span><strong>Updated:</strong> ${updated}</span>
-        </div>
-      `;
-      reposEl.appendChild(card);
-    }
+    <article class="repo-entry">
+      <h3>BatterySimulator — Li-ion Cycle Data Engine</h3>
+      <p>A synthetic battery-cycling generator designed to support diagnostics and predictive modeling workflows in energy and manufacturing contexts.</p>
+    </article>
 
-    statusEl.textContent = `Showing ${list.length} repositories.`;
-  }
+    <article class="repo-entry">
+      <h3>amperedata-streamlit — Interactive Analytics App</h3>
+      <p>A lightweight Streamlit interface that turns model and operations data into decision-ready insights for technical and business stakeholders.</p>
+    </article>
 
-  try {
-    statusEl.textContent = "Loading repositories from GitHub…";
-    const repos = await fetchAllRepos();
-    render(repos);
+    <article class="repo-entry">
+      <h3>kaggle_enefit — Energy Forecasting Pipeline</h3>
+      <p>A time-series forecasting workflow focused on robust validation, feature engineering, and competitive performance on energy signals.</p>
+    </article>
 
-    hideForksEl.addEventListener("change", () => render(repos));
-    sortEl.addEventListener("change", () => render(repos));
-  } catch (e) {
-    statusEl.textContent = "Could not load repositories automatically. Please use the GitHub link above.";
-    console.error(e);
-  }
-})();
-</script>
+    <article class="repo-entry">
+      <h3>NLP_Anomaly-Detection — Text Risk Signals</h3>
+      <p>An applied NLP system for identifying unusual language patterns, enabling earlier detection of issues hidden in textual operational data.</p>
+    </article>
+
+    <article class="repo-entry">
+      <h3>isolated-sign-language-recognition — Gesture AI</h3>
+      <p>A sequence-aware vision project for isolated sign recognition, balancing accuracy and practical deployment considerations.</p>
+    </article>
+
+    <article class="repo-entry">
+      <h3>ml_systems — Production ML Foundations</h3>
+      <p>A repository of ML systems patterns that connects reproducible experimentation with maintainable, deployment-aware architecture.</p>
+    </article>
+
+    <article class="repo-entry">
+      <h3>Boston_crime-analytics — Urban Data Insights</h3>
+      <p>An end-to-end analytics project that surfaces spatial and temporal crime trends to support evidence-driven interpretation.</p>
+    </article>
+
+    <article class="repo-entry">
+      <h3>Wine_quality_analytics — Quality Prediction Modeling</h3>
+      <p>A tabular ML analysis that links measurable attributes to quality outcomes and communicates model behavior in domain-friendly terms.</p>
+    </article>
+  </section>
+
+  <p class="footer-link">
+    Full list:
+    <a href="https://github.com/arunnath011?tab=repositories" target="_blank" rel="noreferrer">github.com/arunnath011</a>
+  </p>
+</main>
